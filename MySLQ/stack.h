@@ -1,3 +1,6 @@
+#ifndef STACK_H
+#define STACK_H
+
 #include "vector.h"
 #define N_OPTR 9
 #include <time.h>
@@ -163,8 +166,8 @@ void append(char *&rpn, float opnd)
     if (opnd != (float)(int)opnd)
         sprintf(buf, "%.2f ", opnd);
     else
-        sprintf(buf, "%d ", (int)opnd);  // 修复：添加完整sprintf调用
-    rpn = (char *)realloc(rpn, sizeof(char) * (n + strlen(buf) + 1));  // 修复：移动realloc到正确位置
+        sprintf(buf, "%d ", (int)opnd);
+    rpn = (char *)realloc(rpn, sizeof(char) * (n + strlen(buf) + 1));
     strcat(rpn, buf);
 }
 
@@ -262,3 +265,5 @@ float evaluate(char *S, char *&RPN)
     }
     return opnd.pop();
 }
+
+#endif

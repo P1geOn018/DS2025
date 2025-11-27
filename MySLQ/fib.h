@@ -1,3 +1,6 @@
+#ifndef FIB_H
+#define FIB_H
+
 class Fib
 {
 private:
@@ -27,3 +30,5 @@ public:
         return g; // 转至上一Fibonacci项，O(1)时间
     }
 };
+
+#endif // FIB_H

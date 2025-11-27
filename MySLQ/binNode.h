@@ -1,4 +1,9 @@
-#define BinNodePosi(T) BinNode<T> *
+#ifndef BINNODE_H
+#define BINNODE_H
+
+#include "stack.h"
+#include "queue.h"
+#define BinNodePosi(T) BinNode<T>*
 #define stature(p) ((p) ? (p)->height : -1)
 typedef enum
 {
@@ -51,33 +56,49 @@ struct BinNode
 template <typename T>
 BinNodePosi(T) BinNode<T>::insertAsLC(T const &e)
 {
-    return lc = new Binnode(e, this);
+    return lc = new BinNode(e, this);
 }
 template <typename T>
 BinNodePosi(T) BinNode<T>::insertAsRC(T const &e)
 {
     return rc = new BinNode(e, this);
 }
+
+template <typename T>
+BinNodePosi(T) BinNode<T>::succ()
+{
+    BinNodePosi(T) s = this; 
+    if (rc)
+    {           
+        s = rc; 
+        while (HasLChild(*s))
+            s = s->lc; 
+    }
+    else
+    { 
+        while (IsRChild(*s))
+            s = s->parent;
+        s = s->parent;     
+    }
+    return s;
+}
 template <typename T>
 template <typename VST>
-void BinNode<T>::travIn(VST &visit)
-{
-    switch (rand() & 5)
-    {
-    case 1:
-        travIn_I1(this, visit);
-        break;
-    case 2:
-        travIn_I2(this, visit);
-        break;
-    case 3:
-        travIn_I3(this, visit);
-        break;
-    case 4:
-        travIn_I4(this, visit);
-        break;
-    default:
-        travIn_R(this, visit);
-        break;
+void BinNode<T>::travLevel(VST &visit)
+{                           
+    Queue<BinNodePosi(T)> Q; 
+    Q.enqueue(this);      
+    std::cout << "调用了层次遍历";
+    while (!Q.empty())
+    { 
+        BinNodePosi(T) x = Q.dequeue();
+        // visit(x->data);
+        std::cout << x->data << " "; 
+        if (HasLChild(*x))
+            Q.enqueue(x->lc); 
+        if (HasRChild(*x))
+            Q.enqueue(x->rc);
     }
+    std::cout << std::endl;
 }
+#endif

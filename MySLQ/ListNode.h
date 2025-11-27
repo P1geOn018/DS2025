@@ -1,3 +1,6 @@
+#ifndef LISTNODE_H
+#define LISTNODE_H
+
 #include <cstddef>
 
 typedef int Rank;
@@ -16,3 +19,5 @@ struct ListNode
     ListNodePosi(T) insertAsPred(T const &e);
     ListNodePosi(T) insertAsSucc(T const &e);
 };
+
+#endif

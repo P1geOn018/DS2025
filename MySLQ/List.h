@@ -1,3 +1,5 @@
+#ifndef LIST_H
+#define LIST_H
 #include "ListNode.h"
 #include <algorithm>
 #include <utility>
@@ -378,3 +380,4 @@ void List<T>::reverse()
         swap((p = p->succ)->data, (q = q->pred)->data);
     }
 }
+#endif
