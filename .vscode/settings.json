@@ -3,6 +3,7 @@
     "iostream": "cpp",
     "chrono": "cpp",
     "ostream": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "iomanip": "cpp"
   }
 }
